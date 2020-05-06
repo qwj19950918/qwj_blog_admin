@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import '../static/css/AdminIndex.css'
 import { DesktopOutlined, FileSyncOutlined } from '@ant-design/icons';
@@ -8,7 +8,11 @@ import ArticleList from './ArticleList'
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 function AdminIndex(props) {
-
+    useEffect(() => {
+        if(!localStorage.getItem('openId')){
+            props.history.push('/')
+        }
+    }, [])
     const [collapsed, setCollapsed] = useState(false)
 
     const onCollapse = collapsed => {

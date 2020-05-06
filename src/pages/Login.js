@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import 'antd/dist/antd.css';
 import { Card, Input, Button, Spin, message } from 'antd';
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
@@ -9,6 +9,11 @@ function Login(props) {
     const [userName, setUserName] = useState('')
     const [passWord, setPassWord] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    useEffect(() => {
+        if(localStorage.getItem('openId')){
+            props.history.push('/index')
+        }
+    }, [])
     const checkLogin = () => {
         setIsLoading(true)
 
